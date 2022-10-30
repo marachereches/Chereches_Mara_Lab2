@@ -19,5 +19,7 @@ namespace Chereches_Mara_Lab2.Data
         public DbSet<Chereches_Mara_Lab2.Models.Publisher> Publisher { get; set; }
 
         public DbSet<Chereches_Mara_Lab2.Models.Author> Author { get; set; }
+
+        public DbSet<Chereches_Mara_Lab2.Models.Category> Category { get; set; }
     }
 }
