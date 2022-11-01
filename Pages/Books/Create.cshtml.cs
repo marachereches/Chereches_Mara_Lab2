@@ -67,17 +67,6 @@ newBook.BookCategories.Add(catToAdd);
  }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _context.Book.Add(Book);
-            await _context.SaveChangesAsync();
-
-            return RedirectToPage("./Index");
-        }
+      
     }
 }

@@ -30,6 +30,7 @@ namespace Chereches_Mara_Lab2.Pages.Books
                 return NotFound();
             }
             Book = await _context.Book
+                 .Include(b => b.Author)
             .Include(b => b.Publisher)
             .Include(b => b.BookCategories).ThenInclude(b => b.Category)
             .AsNoTracking()
@@ -61,6 +62,7 @@ selectedCategories)
                 return NotFound();
             }
             var bookToUpdate = await _context.Book
+                 .Include(b => b.Author)
             .Include(i => i.Publisher)
             .Include(i => i.BookCategories)
             .ThenInclude(i => i.Category)
@@ -72,7 +74,7 @@ selectedCategories)
             if (await TryUpdateModelAsync<Book>(
             bookToUpdate,
             "Book",
-            i => i.Title, i => i.Author,
+            i => i.Title, i => i.AuthorID,
             i => i.Price, i => i.PublishingDate, i => i.Publisher))
             {
                 UpdateBookCategories(_context, selectedCategories, bookToUpdate);
