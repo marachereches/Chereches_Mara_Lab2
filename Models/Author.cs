@@ -11,5 +11,14 @@ namespace Chereches_Mara_Lab2.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public ICollection<Book>? Books { get; set; }
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+
     }
 }
