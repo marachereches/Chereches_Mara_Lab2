@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Chereches_Mara_Lab2.Data;
 using Chereches_Mara_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Chereches_Mara_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly Chereches_Mara_Lab2.Data.Chereches_Mara_Lab2Context _context;
