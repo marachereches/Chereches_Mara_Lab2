@@ -10,6 +10,9 @@ namespace Chereches_Mara_Lab2.Models
     {
         public int ID { get; set; }
         [Display(Name = "Book Title")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z\s-]*$", ErrorMessage = "Titlul trebuie sa aiba maxim 150 de caractere, minim 3, si sa inceapa cu majuscula!")]
+
+        [StringLength(150, MinimumLength = 3)]
         public string Title { get; set; }
         [Column(TypeName = "decimal(6, 2)")]
         [Range(0.01, 500)]
