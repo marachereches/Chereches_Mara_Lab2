@@ -9,7 +9,7 @@ using Chereches_Mara_Lab2.Data;
 using Chereches_Mara_Lab2.Models;
 using Chereches_Mara_Lab2.Models.ViewModels;
 
-namespace Chereches_Mara_Lab2.Pages.Publishers
+namespace Chereches_Mara_Lab2.Pages.Categories
 {
     public class IndexModel : PageModel
     {
@@ -20,25 +20,27 @@ namespace Chereches_Mara_Lab2.Pages.Publishers
             _context = context;
         }
 
-        public IList<Publisher> Publisher { get; set; } = default!;
-        public PublisherIndexData PublisherData { get; set; }
-        public int PublisherID { get; set; }
+        public IList<Category> Category { get;set; } = default!;
+        public CategoriesIndexData CategoryData { get; set; }
+        public int CategoryID { get; set; }
         public int BookID { get; set; }
         public async Task OnGetAsync(int? id, int? bookID)
         {
-            PublisherData = new PublisherIndexData();
-            PublisherData.Publishers = await _context.Publisher
-            .Include(i => i.Books)
-            .ThenInclude(c => c.Author)
-            .OrderBy(i => i.PublisherName)
-            .ToListAsync();
+            CategoryData = new CategoriesIndexData();
+            CategoryData.Categories = await _context.Category
+                .Include(i => i.BookCategories)
+                .ThenInclude(i => i.Book)
+                .ThenInclude(c => c.Author)
+                .OrderBy(i => i.CategoryName)
+                .ToListAsync();
             if (id != null)
             {
-                PublisherID = id.Value;
-                Publisher publisher = PublisherData.Publishers
+                CategoryID = id.Value;
+                Category category = CategoryData.Categories
                 .Where(i => i.ID == id.Value).Single();
-                PublisherData.Books = publisher.Books;
+                CategoryData.BookCategories = category.BookCategories;
             }
         }
+
     }
 }
